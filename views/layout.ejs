@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Auth Tutorial</title>
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/css/materialize.min.css">
+  </head>
+  <body>
+
+    <!-- partials is not significant other than its the folder name -->
+    <!-- notice no quotes or anything here, very minimal syntax -->
+    <% include partials/navbar %>
+    <!-- container for all "main" content, not navbar -->
+    <div class="container">
+      <%- body %>
+    </div>
+    <!-- footer would probably go here if we had one -->
+
+
+    <!-- jquery cdn -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-rc.2/js/materialize.min.js"></script>
+  </body>
+</html>

@@ -27,12 +27,17 @@ passport.use(new passportLocalStrategy({
   db.user.findOne({
     where: { email: email }
   }).then(function(foundUser) {
-    if(!foundUser) {
+    // !foundUser first because if it's null you can't do password check
+    if(!foundUser || !foundUser.isValidPassword(password)) {
       // first arg is err, second is "the thing" in this case null none found
-      done('no user found', null);
+      done('invalid user or password', null);
     }
     else {
-      callback(null, foundUser);
+      done(null, foundUser);
     }
+  }).catch(function(err) {
+    done(err, null);
   })
 }));
+
+module.exports = passport;

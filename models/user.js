@@ -44,5 +44,11 @@ module.exports = (sequelize, DataTypes) => {
   user.associate = function(models) {
     // associations can be defined here
   };
+
+  // helpers go here, after ^ stuff and before return
+  user.prototype.isValidPassword = function(typedPassword) {
+    return bcrypt.compareSync(typedPassword, this.password)
+  }
+
   return user;
 };

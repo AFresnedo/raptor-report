@@ -1,6 +1,10 @@
 # setup
 * express app
     * see other notes
+    * passport passport-local
+    * express-session
+    * dotenv
+    * bcrypt
 * create routes for
     * login
     * sign up

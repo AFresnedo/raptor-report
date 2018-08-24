@@ -1,4 +1,5 @@
 var express = require('express');
+var passport = require('../config/passportConfig');
 
 var db = require('../models');
 
@@ -9,10 +10,12 @@ router.get('/login', function(req, res) {
   res.render('auth/login');
 });
 
-router.post('/login', function(req, res) {
-  console.log(req.body);
-  res.send('login post route');
-});
+router.post('/login', passport.authenticate('local', {
+  successRedirect: '/profile',
+  successFlash: 'Logged in.',
+  failureRedirect: '/auth/login',
+  failureFlash: 'Could not log in.'
+}));
 
 router.get('/signup', function(req, res) {
   res.render('auth/signup');
@@ -26,21 +29,31 @@ router.post('/signup', function(req, res) {
     defaults: req.body
   }).spread(function(user, wasCreated) {
     if (wasCreated) {
-      // TODO automatically log user in
-      res.redirect('/profile');
+      // automatically log user in using local strategy
+      passport.authenticate('local', {
+        successRedirect: '/profile',
+        successFlash: 'Successfully registered!',
+        failureRedirect: '/',
+        failureFlash: 'Could not log in.'
+      })(req, res);
     }
     else {
       // TODO give user already-created message
+      req.flash('error', 'Please login');
       res.redirect('/auth/login');
     }
   }).catch(function(err) {
-    console.log(err);
-    res.send('error signing up');
+    // req.flash is a new function by flash i assume
+    // "what kind of thing is it", "message"
+    req.flash('error', err.message);
+    res.redirect('/auth/signup');
   });
 });
 
 router.get('/logout', function(req, res) {
-  res.send('this is the logout response');
+  req.logout(); // logs out of session
+  req.flash('success', 'Successfully logged out!');
+  res.redirect('/');
 });
 
 module.exports = router;

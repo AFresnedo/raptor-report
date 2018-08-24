@@ -30,7 +30,7 @@ passport.use(new passportLocalStrategy({
     // !foundUser first because if it's null you can't do password check
     if(!foundUser || !foundUser.isValidPassword(password)) {
       // first arg is err, second is "the thing" in this case null none found
-      done('invalid user or password', null);
+      done(null, null);
     }
     else {
       done(null, foundUser);

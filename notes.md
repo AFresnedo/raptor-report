@@ -5,6 +5,7 @@
     * express-session
     * dotenv
     * bcrypt
+    * connect-flash
 * create routes for
     * login
     * sign up

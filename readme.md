@@ -111,7 +111,7 @@ $ nodemon
 
 Otherwise,
 ```
-node index.js
+$ node index.js
 ```
 
 #### 9. Create a new repository for the new project
@@ -120,7 +120,11 @@ node index.js
 * Delete the old remote locations
 * Add as a new remote location
 ```
-$ git remote add github....
+$ git remote remove github
+$ remote add github <new_repo_link>
+$ git add -A
+$ git commit -m "init repo"
+$ git push -u github master
 ```
 
 > NOTE: Do NOT make commits from new project to auth boilerplate. Only commit

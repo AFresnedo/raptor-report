@@ -61,13 +61,13 @@ written and bug free.
 #### 1. Clone repo, buth wit ha different name!
 
 ```
-git clone <repo_link> <new_name>
+$ git clone <repo_link> <new_name>
 ```
 
 #### 2. Create a new database for your new project.
 
 ```
-createdb <new_db_name>
+$ createdb <new_db_name>
 ```
 
 #### 3. Open `config.json` and change the following:
